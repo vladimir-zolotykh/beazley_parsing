@@ -6,8 +6,8 @@ import node
 
 
 tokens = [
-    r"(?P<NUM>\d+)",
     r"(?P<VAR>[a-zA-Z_]\w*)",
+    r"(?P<NUM>\d+)",
     r"(?P<PLUS>\+)",
     r"(?P<MINUS>\-)",
     r"(?P<MUL>\*)",
@@ -34,10 +34,12 @@ class ParseExpr:
     def __init__(self, input_str: str):
         self.input_str = input_str
         self.matches = [
-            m for m in yield_tokens(self.input_str) if not m.group(1).isspace()
+            m.group(0)
+            for m in re.finditer(master_pat, input_str)
+            if not m.group(0).isspace()
         ]
 
-    def parse_expr(self) -> node.Node:
+    def parse_expr(self, matches: list) -> node.Node:
         pass
 
     def parse_term(self) -> node.Node:
