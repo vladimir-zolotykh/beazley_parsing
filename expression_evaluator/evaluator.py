@@ -17,7 +17,7 @@
 >>> e.visit(t4)
 0.6
 """
-from node import Add, Sub, Mul, Div, Number
+from node import Add, Sub, Mul, Div, Number  # noqa: F401
 import visitor
 
 
