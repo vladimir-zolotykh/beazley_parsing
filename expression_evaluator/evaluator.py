@@ -8,8 +8,16 @@
 >>> t3 = Div(t2, t1)
 >>> e.visit(t3)
 0.75
+
+# Representation of 1 + 2 * (3 - 4) / 5
+>>> t1 = Sub(Number(3), Number(4))
+>>> t2 = Mul(Number(2), t1)
+>>> t3 = Div(t2, Number(5))
+>>> t4 = Add(Number(1), t3)
+>>> e.visit(t4)
+0.6
 """
-from node import Add, Sub, Div, Number
+from node import Add, Sub, Mul, Div, Number
 import visitor
 
 
@@ -27,7 +35,7 @@ class Evaluator(visitor.Visitor):
         return self.visit(node.left) + self.visit(node.right)
 
     def visit_mul(self, node):
-        pass
+        return self.visit(node.left) * self.visit(node.right)
 
     def visit_number(self, node):
         return node.val
