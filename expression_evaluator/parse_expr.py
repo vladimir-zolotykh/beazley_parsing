@@ -23,6 +23,29 @@ def yield_tokens(input_str: str):
         yield tok
 
 
+class ExpressionEvaluator:
+    def parse(self, text):
+        return self.expr()
+
+    def _advance(self):
+        pass
+
+    def _accept(self, toktype):
+        pass
+
+    def _expect(self, toktype):
+        pass
+
+    def expr(self):
+        pass
+
+    def term(self):
+        pass
+
+    def factor(self):
+        pass
+
+
 class ParseExpr:
     """
     expr   ::= expr + term | expr - term | term
